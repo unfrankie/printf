@@ -5,8 +5,11 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
 int _putchar(char);
 int _printf(const char *, ...);
+int handler(const char *, va_list);
+int handler_type(const char *, va_list, int *);
 int print_character(va_list);
 int print_string(va_list);
 int _strlen(const char *);
