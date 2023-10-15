@@ -14,6 +14,7 @@ int _putchar(char c)
 int print_string(char *str)
 {
 	int i = 0;
+
 	if (str == NULL)
 	{
 		print_string("(null)");
@@ -31,7 +32,7 @@ int length_number(int n)
 {
 	if (n == 0)
 		return (0);
-	return (1 + length_number(n/ 10));
+	return (1 + length_number(n / 10));
 }
 
 int print_number(int n)
@@ -48,14 +49,14 @@ int print_number(int n)
 		_putchar('-');
 		n = -n;
 	}
-	if (num >= 10)
+	if (n >= 10)
 	{
 		print_number(n / 10);
 		print_number(n % 10);
 	}
 	else if (n < 10)
 	{
-		_putchar(num + '0');
+		_putchar(n + '0');
 	}
 	return (1);
 }
@@ -63,11 +64,11 @@ int print_number(int n)
 int printf(const char *format, ...)
 {
 	int j = 0;
-
 	va_list l;
+
 	va_start(l, format);
 
-	if (!format || !format[0]);
+	if (!format || !format[0])
 		return (-1);
 	while (*format)
 	{
@@ -77,11 +78,13 @@ int printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				char c = va_arg(l, int);
+
 				j += _putchar(c);
 			}
 			else if (*format == 's')
 			{
 				char *s = va_arg(l, char *);
+
 				j += print_string(s);
 			}
 			else if (*format == '%')
@@ -92,6 +95,7 @@ int printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				int n = va_arg(l, int);
+
 				if (n < 0)
 					j++;
 				j += length_number(n);
