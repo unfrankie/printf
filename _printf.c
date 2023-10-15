@@ -87,8 +87,8 @@ int print_number(int n)
 
 int _printf(const char *format, ...)
 {
-	int j = 0;
-	va_list l;
+	int j = 0, va_list l, char c = va_arg(l, int), char *s = va_arg(l, int)
+		int n = va_arg(l, int);
 
 	va_start(l, format);
 	if (!format || !format[0])
@@ -100,14 +100,10 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == 'c')
 			{
-				char c = va_arg(l, int);
-
 				j += _putchar(c);
 			}
 			else if (*format == 's')
 			{
-				char *s = va_arg(l, char *);
-
 				j += print_string(s);
 			}
 			else if (*format == '%')
@@ -117,8 +113,6 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'd' || *format == 'i')
 			{
-				int n = va_arg(l, int);
-
 				if (n < 0)
 					j++;
 				j += length_number(n);
