@@ -61,7 +61,7 @@ int print_number(int n)
 	return (1);
 }
 
-int printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	int j = 0;
 	va_list l;
