@@ -87,7 +87,8 @@ int print_number(int n)
 
 int _printf(const char *format, ...)
 {
-	int j = 0, va_list l;
+	int j = 0;
+	va_list l;
 
 	va_start(l, format);
 	if (!format || !format[0])
