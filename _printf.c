@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
-  * _printf - produce  output according to a format
-  * @format: the format string
-  * Return: the number of characters printed
+  * _putchar - writes the character c to stdout
+  * @c: The character to print
+  * Return: 1
   **/
 
 int _putchar(char c)
@@ -11,22 +11,34 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 
-int print_string(char *str)
+/**
+  * print_string - print string
+  * @s: the string
+  * Return: i
+  **/
+
+int print_string(char *s)
 {
 	int i = 0;
 
-	if (str == NULL)
+	if (s == NULL)
 	{
 		print_string("(null)");
 		return (6);
 	}
-	while (str[i])
+	while (s[i])
 	{
-		_putchar(str[i]);
+		_putchar(s[i]);
 		i++;
 	}
 	return (i);
 }
+
+/**
+  * length_number - calculate length number
+  * @n: length
+  * Return: i
+  **/
 
 int length_number(int n)
 {
@@ -34,6 +46,12 @@ int length_number(int n)
 		return (0);
 	return (1 + length_number(n / 10));
 }
+
+/**
+  * print_number - print number
+  * @n: number
+  * Return: 1
+  **/
 
 int print_number(int n)
 {
@@ -61,13 +79,18 @@ int print_number(int n)
 	return (1);
 }
 
+/**
+  * _printf - produce  output according to a format
+  * @format: the format string
+  * Return: the number of characters printed
+  **/
+
 int _printf(const char *format, ...)
 {
 	int j = 0;
 	va_list l;
 
 	va_start(l, format);
-
 	if (!format || !format[0])
 		return (-1);
 	while (*format)
