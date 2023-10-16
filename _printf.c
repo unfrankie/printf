@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
   * _putchar - writes the character c to stdout
   * @c: The character to print
@@ -8,6 +10,30 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/**
+  * print_string - print string
+  * @s: the string
+  * Return: i
+  **/
+
+int print_string(char *s)
+{
+	int i = 0;
+
+	if (s == NULL)
+	{
+		print_string("(null)");
+		return (6);
+	}
+	while (s[i])
+	{
+		_putchar(s[i]);
+		i++;
+	}
+	return (i);
+}
+
 /**
   * length_number - calculate length number
   * @n: length
@@ -72,7 +98,24 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'd' || *format == 'i')
+			if (*format == 'c')
+			{
+				char c = va_arg(l, int);
+
+				j += _putchar(c);
+			}
+			else if (*format == 's')
+			{
+				char *s = va_arg(l, char *);
+
+				j += print_string(s);
+			}
+			else if (*format == '%')
+			{
+				_putchar('%');
+				j++;
+			}
+			else if (*format == 'd' || *format == 'i')
 			{
 				int n = va_arg(l, int);
 
