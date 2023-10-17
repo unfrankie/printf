@@ -86,8 +86,7 @@ int print_number(int n)
   **/
 
 int _printf(const char *format, ...)
-{
-	int j = 0;
+{ int j = 0;
 	va_list l;
 
 	va_start(l, format);
@@ -97,51 +96,34 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			format++;
-			if (*format == 'c')
-			{
-				char c = va_arg(l, int);
+			format++; if (*format == 'c')
+			{ char c = va_arg(l, int);
 
 				j += _putchar(c);
-			}
-			else if (*format == 's')
-			{
-				char *s = va_arg(l, char *);
+			} else if (*format == 's')
+			{ char *s = va_arg(l, char *);
 
 				j += print_string(s);
-			}
-			else if (*format == '%')
-			{
-				_putchar('%');
+			} else if (*format == '%')
+			{ _putchar('%');
 				j++;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				int n = va_arg(l, int);
+			} else if (*format == 'd' || *format == 'i')
+			{ int n = va_arg(l, int);
 
 				if (n < 0)
 					j++;
 				j += length_number(n);
 				print_number(n);
-			}
-			else
+			} else
 			{
 				_putchar('%');
 				j++;
 				if (*format)
-				{
-					_putchar(*format);
-					j++;
-				}
-			}
+				{ _putchar(*format);
+					j++; }
+			} format++;
+		} else
+		{ _putchar(*format);
 			format++;
-		}
-		else
-		{
-			_putchar(*format);
-			format++;
-			j++;
-		}
-	}
-	return (j);
-}
+			j++; }
+	} return (j); }
